@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "BHI47",
+    "PictureUrl": "images\\garages\\Garage.png",
+    "Country": "Egypt",
+    "City": "Behira",
+    "Town": "Abo-ElMatamer",
+    "Street": "Alex-Cairo Road",
+    "HourPrice" : 25
+  }
+
+]

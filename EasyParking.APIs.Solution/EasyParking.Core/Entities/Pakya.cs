@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EasyParking.Core.Entities
+{
+	public class Pakya : BaseEntity
+	{
+		public bool State {  get; set; }
+
+		public int GarageId { get; set; }
+		public Garage Garage { get; set;}
+	}
+}
