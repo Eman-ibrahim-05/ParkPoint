@@ -37,9 +37,10 @@ namespace EasyParking.APIs.Middlewares
 				var response = env.IsDevelopment() ?
 							   new ApiExceptionResponse((int)HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString())
 								  :
-							   new ApiExceptionResponse((int)HttpStatusCode.InternalServerError);
+							   new ApiExceptionResponse((int)HttpStatusCode.InternalServerError, ex.Message);
 
-				var json = JsonSerializer.Serialize(response);
+				var Options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+				var json = JsonSerializer.Serialize(response, Options);
 
 				await context.Response.WriteAsync(json);
 			}

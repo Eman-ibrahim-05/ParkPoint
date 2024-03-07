@@ -32,35 +32,18 @@ namespace EasyParking.APIs
 
 			//builder.Services.AddScoped<IGenericRepository<Garage>,GenericRepository<Garage>>();
 			//builder.Services.AddScoped<IGenericRepository<Pakya>, GenericRepository<Pakya>>();
-			builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
-			builder.Services.AddAutoMapper(typeof(MappingProfiles));
-
+			
 			builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 			{
 				options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"));
 			});
 
-			builder.Services.Configure<ApiBehaviorOptions>(options =>
-			{
-				options.InvalidModelStateResponseFactory = (actionContext) =>
-				{
-					var errors = actionContext.ModelState.Where(P => P.Value.Errors.Count() > 0)
-					                                     .SelectMany(p => p.Value.Errors)
-														 .Select(E => E.ErrorMessage).ToArray();
-
-					var ValidationErrorResponse = new ApiValidationErrorResponse()
-					{
-						Errors = errors
-					};
-
-					return new BadRequestObjectResult(ValidationErrorResponse);
-				};
-			});
-
 			//Extention Services
+			builder.Services.AddApplicationServices();
 			builder.Services.AddIdentityServices();
 
-			builder.Services.AddSwaggerGen();
+			builder.Services.AddSwaggerServices();
+			
 			#endregion
 
 			var app = builder.Build();
@@ -69,7 +52,7 @@ namespace EasyParking.APIs
 			var scope = app.Services.CreateScope(); //Services Scoped
 			var services = scope.ServiceProvider;
 			//LoggerFactory
-			var LoggerFactory = services.GetRequiredService<ILoggerFactory>();
+			var LoggerFactory = services.GetRequiredService<ILoggerFactory>(); 
 			try
 			{
 				var dbContext = services.GetRequiredService<StoreContext>(); //Ask CLR to Create Object from Store Context Explicitly
@@ -91,8 +74,7 @@ namespace EasyParking.APIs
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
 			{
-				app.UseSwagger();
-				app.UseSwaggerUI();
+				app.UseSwaggerMiddleWares();
 			}
 			app.UseMiddleware<ExceptionMiddleware>();
 			app.UseHttpsRedirection();

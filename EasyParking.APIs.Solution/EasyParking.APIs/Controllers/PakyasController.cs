@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EasyParking.APIs.Dtos;
+using EasyParking.APIs.Errors;
 using EasyParking.Core.Entities;
 using EasyParking.Core.Repositories;
 using EasyParking.Core.Specifications;
@@ -28,6 +29,9 @@ namespace EasyParking.APIs.Controllers
 			var MappedPakyas = mapper.Map<IEnumerable<Pakya>, IEnumerable<PakyaToReturnDto>>(Pakyas);
 			return Ok(MappedPakyas);
 		}
+
+		[ProducesResponseType(typeof(PakyaToReturnDto),StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status404NotFound)]
 
 		[HttpGet("{id}")]
 		public async Task<ActionResult<PakyaToReturnDto>> GetPakya(int id)

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EasyParking.APIs.Dtos;
+using EasyParking.APIs.Errors;
 using EasyParking.Core.Entities;
 using EasyParking.Core.Repositories;
 using EasyParking.Core.Specifications;
@@ -28,6 +29,8 @@ namespace EasyParking.APIs.Controllers
 			return Ok(MappedGarages);
 		}
 
+		[ProducesResponseType(typeof(GarageToReturnDto), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status404NotFound)]
 		[HttpGet("{id}")]
 		public async Task<ActionResult<Garage>> GetGarage(int id)
 		{

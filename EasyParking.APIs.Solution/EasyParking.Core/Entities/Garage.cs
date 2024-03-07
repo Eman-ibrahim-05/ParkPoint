@@ -10,10 +10,7 @@ namespace EasyParking.Core.Entities
 	{
 
 		
-		public string Country { get; set; }
-		public string City { get; set; }
-		public string Town { get; set; }
-		public string Street { get; set; }
+		public string LocationUrl { get; set; }
 
 		public decimal HourPrice { get; set; }
 		

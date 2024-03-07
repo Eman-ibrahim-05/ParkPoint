@@ -14,13 +14,11 @@ namespace EasyParking.Repository.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    City = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Town = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Street = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LocationUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HourPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,10 +31,10 @@ namespace EasyParking.Repository.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    State = table.Column<bool>(type: "bit", nullable: false),
                     GarageId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

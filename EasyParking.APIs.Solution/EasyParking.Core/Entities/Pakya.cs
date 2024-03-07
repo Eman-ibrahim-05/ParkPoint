@@ -10,8 +10,6 @@ namespace EasyParking.Core.Entities
 {
 	public class Pakya : BaseEntity
 	{
-		public bool State {  get; set; }
-
 		public int GarageId { get; set; }
 		public Garage Garage { get; set;}
 	}
