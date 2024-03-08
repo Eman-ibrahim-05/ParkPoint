@@ -40,7 +40,7 @@ namespace EasyParking.APIs
 
 			//Extention Services
 			builder.Services.AddApplicationServices();
-			builder.Services.AddIdentityServices();
+			builder.Services.AddIdentityServices(builder.Configuration);
 
 			builder.Services.AddSwaggerServices();
 			
@@ -80,6 +80,7 @@ namespace EasyParking.APIs
 			app.UseHttpsRedirection();
 			app.UseStatusCodePagesWithRedirects("/errors/{0}");
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 

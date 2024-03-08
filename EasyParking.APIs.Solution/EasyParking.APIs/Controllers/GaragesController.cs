@@ -32,7 +32,7 @@ namespace EasyParking.APIs.Controllers
 		[ProducesResponseType(typeof(GarageToReturnDto), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status404NotFound)]
 		[HttpGet("{id}")]
-		public async Task<ActionResult<Garage>> GetGarage(int id)
+		public async Task<ActionResult<GarageToReturnDto>> GetGarage(int id)
 		{
 			var spec = new GarageSpecifications(id);
 			var Garage = await garageRepo.GetByIdlWithSpecAsync(spec);

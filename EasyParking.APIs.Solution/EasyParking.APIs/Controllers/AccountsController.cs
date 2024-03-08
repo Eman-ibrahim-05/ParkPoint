@@ -2,9 +2,11 @@
 using EasyParking.APIs.Errors;
 using EasyParking.Core.Entities.Identity;
 using EasyParking.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EasyParking.APIs.Controllers
 {
@@ -65,5 +67,33 @@ namespace EasyParking.APIs.Controllers
 				Token = await tokenService.CreateTokenAsync(user, userManager)
 			});
 		}
+
+
+		[Authorize]
+		[HttpGet("currentuser")] //Get: api/accounts/currentuser
+		public async Task<ActionResult<UserDto>> GetCurrentUser()
+		{
+			var email = User.FindFirstValue(ClaimTypes.Email);
+			var user = await userManager.FindByEmailAsync(email);
+			return Ok(new UserDto()
+			{
+				DisplayName = user.DisplayName,
+				Email = user.Email,
+				Token = await tokenService.CreateTokenAsync(user, userManager)
+			});
+		}
+
+
+		[Authorize]
+		[HttpGet("carnumber")]
+		public async Task<ActionResult<string>> GetUserCarNumber()
+		{
+			var email = User.FindFirstValue(ClaimTypes.Email);
+			var user = await userManager.FindByEmailAsync(email);
+			
+			return Ok($"CarNumber : {user.CarNumber}");
+		}
+
+	
 	}
 }

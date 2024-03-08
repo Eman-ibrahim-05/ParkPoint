@@ -4,6 +4,8 @@ using EasyParking.APIs.Errors;
 using EasyParking.Core.Entities;
 using EasyParking.Core.Repositories;
 using EasyParking.Core.Specifications;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +23,7 @@ namespace EasyParking.APIs.Controllers
 			this.mapper = mapper;
 		}
 
+		
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<PakyaToReturnDto>>> GetPakyas()
 		{
