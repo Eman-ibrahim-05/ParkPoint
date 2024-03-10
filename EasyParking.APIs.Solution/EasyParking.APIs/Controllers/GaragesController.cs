@@ -39,5 +39,5 @@ namespace EasyParking.APIs.Controllers
 			var MappedGarage = mapper.Map<Garage,GarageToReturnDto>(Garage);
 			return Ok(MappedGarage);
 		}
-    }
+	}
 }

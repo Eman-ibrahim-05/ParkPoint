@@ -91,9 +91,9 @@ namespace EasyParking.APIs.Controllers
 			var email = User.FindFirstValue(ClaimTypes.Email);
 			var user = await userManager.FindByEmailAsync(email);
 			
-			return Ok($"CarNumber : {user.CarNumber}");
+			return Ok(user.CarNumber);
 		}
 
-	
+
 	}
 }
