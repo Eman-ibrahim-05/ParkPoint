@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EasyParking.APIs.Dtos;
 using EasyParking.Core.Entities;
+using EasyParking.Core.Entities.Identity;
 
 namespace EasyParking.APIs.Helpers
 {
@@ -11,6 +12,7 @@ namespace EasyParking.APIs.Helpers
 			CreateMap<Pakya, PakyaToReturnDto>()
 					 .ForMember(PG => PG.Garage, O => O.MapFrom(P => P.Garage.Name));
 			CreateMap<Garage, GarageToReturnDto>();
+			CreateMap<AppUser,UserDto>().ReverseMap();
         }
     }
 }
