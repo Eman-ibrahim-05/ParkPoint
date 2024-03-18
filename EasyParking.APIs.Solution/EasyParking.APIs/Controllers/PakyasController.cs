@@ -44,6 +44,8 @@ namespace EasyParking.APIs.Controllers
 			var MappedPakya = mapper.Map<Pakya, PakyaToReturnDto>(Pakya);
 			return Ok(MappedPakya);
 		}
+
+		
 	}
 	
 }

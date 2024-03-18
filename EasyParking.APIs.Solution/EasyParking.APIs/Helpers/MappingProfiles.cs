@@ -11,6 +11,7 @@ namespace EasyParking.APIs.Helpers
 		{
 			CreateMap<Pakya, PakyaToReturnDto>()
 					 .ForMember(PG => PG.Garage, O => O.MapFrom(P => P.Garage.Name));
+					 
 			CreateMap<Garage, GarageToReturnDto>();
 			CreateMap<AppUser,UserDto>().ReverseMap();
         }

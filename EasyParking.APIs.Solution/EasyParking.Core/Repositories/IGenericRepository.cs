@@ -17,5 +17,6 @@ namespace EasyParking.Core.Repositories
 		Task<IEnumerable<T>> GetAllWithSpecAsync(ISpecification<T> spec);
 
 		Task<T> GetByIdlWithSpecAsync(ISpecification<T> spec);
+
 	}
 }

@@ -18,5 +18,7 @@ namespace EasyParking.Core.Specifications
         {
 			Includes.Add(P => P.Garage);
 		}
+
+
     }
 }
